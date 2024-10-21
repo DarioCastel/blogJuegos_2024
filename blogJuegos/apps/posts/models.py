@@ -34,11 +34,13 @@ class Posts(models.Model):  # nombreapp_nombreclase
     titulo = models.CharField(
         max_length=250, null=False, blank=False, verbose_name="Titulo"
     )
+    encabezado = models.TextField(verbose_name="Encabezado")
     contenido = models.TextField(verbose_name="Contenido")
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, )
-    imagen = models.ImageField(upload_to="media/posts", null=True, blank=True)
+    imagen1 = models.ImageField(upload_to="media/posts", null=True, blank=True)
+    imagen2 = models.ImageField(upload_to="media/posts", null=True, blank=True)
 
     class Meta:
         db_table = "Posts"
