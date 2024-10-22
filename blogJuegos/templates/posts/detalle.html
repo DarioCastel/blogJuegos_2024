@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block titulo %} Noticias detalle {% endblock titulo %}
+{% block contenido %}
+
+{% if user.id == noticia.autor_id %}
+<a class="btn btn-warning" href="{% url 'modificar_post' noticia.pk %}">Modificar</a>
+{% endif %}
+<h1>{{noticia}}</h1>
+<img class="img-detalle" src="{{ noticia.imagen.url }}" style="height: 200px;">
+<p>{{noticia.contenido}}</p>
+<p>Fecha: {{noticia.fecha_publicacion}}</p>
+<p>Categoria: {{noticia.categoria}}</p>
+
+<p><img width="20px"
+        src="https://th.bing.com/th/id/R.0ababdb27dd0bb71f21f03c98b6cd6f1?rik=%2fiVDxahrgNztPA&pid=ImgRaw&r=0" alt="">
+    {{noticia.autor}}</p>
+
+<h2>Escribe un comentario</h2>
+<div>
+    <form action="{% url 'comentar' %}" method="post">
+        {% csrf_token %}
+        <textarea name="comentario">
+        </textarea>
+        <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden="">
+        <input type="submit" value="comentar">
+    </form>
+</div>
+
+<div>
+    <h2>Comentarios</h2>
+    {% for comentario in comentarios %}
+    <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{comentario.fecha_publicacion}}</div>
+        <div class="card-body">
+            <h5 class="card-title"> {{comentario.autor}}</h5>
+            <p class="card-text">{{comentario.contenido}}</p>
+        </div>
+
+        <a class="btn btn-danger" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
+        <a class="btn btn-warning" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock contenido %}
