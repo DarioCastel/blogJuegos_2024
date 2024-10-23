@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser, User
 
 # usuarios con atributos nuevos
 class User(AbstractUser):
-    icono = models.ImageField(upload_to="media/usuarios", null=True, blank=True)
+    icono = models.ImageField(upload_to="media/usuarios",  default='media/usuarios/default.png', null=True, blank=True)
     descripcion = models.TextField(max_length=350)
 
     def __str__(self):
