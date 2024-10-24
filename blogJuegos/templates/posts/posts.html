@@ -36,9 +36,15 @@
         {% for noticia in object_list %}
         <div class="col-md-6 mb-4">
             <div class="card h-100">
-                <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="{{ noticia.titulo }}" style="height: 200px; object-fit: cover;">
+                <!-- Hacer clic en la imagen redirige al detalle -->
+                <a href="{% url 'detalle' noticia.id %}">
+                    <img src="{{ noticia.imagen1.url }}" class="card-img-top" alt="{{ noticia.titulo }}" style="height: 200px; object-fit: cover;">
+                </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    <!-- Hacer clic en el título redirige al detalle -->
+                    <a href="{% url 'detalle' noticia.id %}" class="text-decoration-none text-dark">
+                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    </a>
                     <p class="card-text">{{ noticia.contenido | truncatechars:100 }} <a href="{% url 'detalle' noticia.id %}">ver más...</a></p>
                     <p class="text-muted"><small>Publicado el {{ noticia.fecha_publicacion }}</small></p>
                 </div>

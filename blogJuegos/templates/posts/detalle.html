@@ -14,7 +14,8 @@
     <h1 class="mb-4">{{ noticia.titulo }}</h1>
 
     <!-- Imagen -->
-    <img class="img-fluid mb-4" src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}" style="max-height: 200px; object-fit: cover;">
+    <img class="img-fluid mb-4" src="{{ noticia.imagen1.url }}" alt="{{ noticia.titulo }}" style="max-height: 200px; object-fit: cover;">
+    <img class="img-fluid mb-4" src="{{ noticia.imagen2.url }}" alt="{{ noticia.titulo }}" style="max-height: 200px; object-fit: cover;">
 
     <!-- Contenido de la noticia -->
     <p>{{ noticia.contenido }}</p>
@@ -51,7 +52,7 @@
     <div class="mt-5">
         <h2>Comentarios</h2>
         {% for comentario in comentarios %}
-        <div class="card mb-3" style="max-width: 400px; opacity: 0,8; background-color: rgba(128, 128, 128, 0.8); border: 1px solid #007bff;">
+        <div class="card mb-3" style="max-width: 400px; opacity: 0.8; background-color: rgba(128, 128, 128, 0.8); border: 1px solid #007bff;">
             <div class="card-header">
                 Publicado el {{ comentario.fecha_publicacion }}
             </div>

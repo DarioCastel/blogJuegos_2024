@@ -115,5 +115,4 @@ AUTH_USER_MODEL = "posts.User"
 
 # ruta archivos media
 
-MEDIA_URL = "/media/"
-# MEDIA_ROOT = BASE_DIR / "media" no usar
+MEDIA_URL = '/media/'

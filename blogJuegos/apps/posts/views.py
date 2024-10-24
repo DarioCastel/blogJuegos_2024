@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
-from .models import Posts, User, Comentarios, Categorias
+from .models import Posts, User, Comentarios, Categorias, Contacto
 from .form import (
     RegistroForm,
-    CrearForm,
     ModificarForm,
     ModificarComentarioForm,
     CustomLoginForm,
+    ContactForm,
 )
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.contrib import messages
 
 # vista basada en funciones
 # def posts(request):
@@ -57,6 +58,7 @@ class Noticias(ListView):
         return context
 
 
+
 def post_id(request, id):
     ctx = {}
     noticia = Posts.objects.get(id=id)
@@ -91,7 +93,7 @@ class CustomLoginView(LoginView):
 
 
 class CrearPost(CreateView):
-    form_class = CrearForm
+    form_class = ModificarForm
     model = Posts
     template_name = "posts/crear_post.html"
     success_url = reverse_lazy("noticias")
@@ -135,3 +137,20 @@ class EliminarComentario(DeleteView):
     model = Comentarios
     template_name = "comentarios/confirm_delete.html"
     success_url = reverse_lazy("noticias")
+
+
+def contacto(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Guardar los datos en la base de datos
+            Contacto.objects.create(
+                nombre=form.cleaned_data['nombre'],
+                email=form.cleaned_data['email'],
+                mensaje=form.cleaned_data['mensaje']
+            )
+            return redirect('contacto')  # Redirigir después de guardar
+    else:
+        form = ContactForm()
+
+    return render(request, 'contacto.html', {'form': form})

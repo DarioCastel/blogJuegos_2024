@@ -51,6 +51,17 @@ class CrearForm(forms.ModelForm):
 
     class Meta:
         model = Posts
+        fields = ("contenido",)
+        fields = ['titulo', 'encabezado', 'contenido', 'categoria', 'imagen1', 'imagen2']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'encabezado': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
+            'imagen1': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'imagen2': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
+
         exclude = ["autor"]
 
 
@@ -59,6 +70,15 @@ class ModificarForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ("contenido",)
+        fields = ['titulo', 'encabezado', 'contenido', 'categoria', 'imagen1', 'imagen2']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'encabezado': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
+            'imagen1': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'imagen2': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
 
 
 # Formulario Comentarios
@@ -81,6 +101,10 @@ class ModificarComentarioForm(forms.ModelForm):
             "contenido",
         ]
 
+class ContactForm(forms.Form):
+    nombre = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    mensaje = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(

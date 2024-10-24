@@ -39,8 +39,8 @@ class Posts(models.Model):  # nombreapp_nombreclase
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, )
-    imagen1 = models.ImageField(upload_to="media/posts", null=True, blank=True)
-    imagen2 = models.ImageField(upload_to="media/posts", null=True, blank=True)
+    imagen1 = models.ImageField(upload_to="media/posts", null=False, blank=False, default='media/posts/default.png')
+    imagen2 = models.ImageField(upload_to="media/posts", null=False, blank=False, default='media/posts/default.png')
 
     class Meta:
         db_table = "Posts"
@@ -62,8 +62,18 @@ class Comentarios(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
 
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensaje = models.TextField()
+   
+    class Meta:
+        db_table = "Contacto"
+        verbose_name = "Contacto"
+        verbose_name_plural = "Contacto"
 
-
+    def __str__(self):
+        return self.nombre
 
 # class Imagenes(models.Model):
 #     imagen = models.ImageField(upload_to="/media/Posts")
