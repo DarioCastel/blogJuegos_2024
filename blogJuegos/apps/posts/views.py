@@ -83,7 +83,7 @@ def perfil(request, id):
 # vista basada en clase
 class Registro(CreateView):
     form_class = RegistroForm
-    success_url = reverse_lazy("noticias")
+    success_url = reverse_lazy("login")
     template_name = "usuarios/registro.html"
 
 

@@ -13,6 +13,7 @@ class PostsAdmin(admin.ModelAdmin):
 class ContactoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'email') 
 
+admin.site.register(Contacto)
 admin.site.register(Posts)
 admin.site.register(Categorias)
 admin.site.register(User)
