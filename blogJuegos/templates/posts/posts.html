@@ -4,37 +4,52 @@
 
 {% block contenido %}
 
-<section class="container my-4">
-    {% if user.is_authenticated %}
-    <div class="mb-4 text-end">
+<section class="container"> <!-- Se eliminaron los ajustes de margen -->
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="text-end"> <!-- Se eliminaron los ajustes de margen -->
         <a href="{% url 'nuevo_post' %}" class="btn btn-primary">Nuevo Post</a>
     </div>
     <hr>
     {% endif %}
 
     <!-- Filtros -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center"> 
         <div>
-            <a href="?ordenar=fecha" class="btn btn-outline-secondary me-2">Ordenar por fecha</a>
-            <a href="?ordenar=alfabetico" class="btn btn-outline-secondary">Ordenar alfabéticamente</a>
+            <!-- Ordenar -->
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFecha" data-bs-toggle="dropdown" aria-expanded="false"> Ordenar</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownFecha">
+                    <li><a class="dropdown-item" href="?ordenar=fecha&direccion=asc">Antiguo a reciente</a></li>
+                    <li><a class="dropdown-item" href="?ordenar=fecha&direccion=desc">Reciente a antiguo</a></li>
+                    <li><a class="dropdown-item" href="?ordenar=alfabetico&direccion=asc">A - Z</a></li>
+                    <li><a class="dropdown-item" href="?ordenar=alfabetico&direccion=desc">Z - A</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <a href="{% url 'noticias' %}" class="btn btn-outline-secondary me-2">Todas</a>
-            {% for categoria in categorias %}
-            <a href="?categoria={{categoria.nombre}}" class="btn btn-outline-secondary me-2">{{categoria.nombre}}</a>
-            {% endfor %}
-        </div>
+
+        
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFecha" data-bs-toggle="dropdown" aria-expanded="false"> Categorias</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownFecha">
+                <li><a class="dropdown-item" href="{% url 'noticias' %}">TODAS</a></li>
+                {% for categoria in categorias %}
+                    <li><a class="dropdown-item" href="?categoria={{categoria.nombre}}">{{categoria.nombre}}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+        
     </div>
     <hr>
 </section>
 
 <!-- Noticias -->
 <div class="container">
-    <h1 class="mb-4">Noticias</h1>
+    <h1>Noticias</h1> <!-- Se eliminaron los ajustes de margen -->
 
     <div class="row">
         {% for noticia in object_list %}
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6"> <!-- Se eliminaron los ajustes de margen -->
             <div class="card h-100">
                 <!-- Hacer clic en la imagen redirige al detalle -->
                 <a href="{% url 'detalle' noticia.id %}">
@@ -52,7 +67,7 @@
                     <a href="?autor={{noticia.autor}}" class="text-secondary"><small>{{ noticia.autor }}</small></a>
                     <p class="mb-0"><small>Categoría: {{noticia.categoria}}</small></p>
                 </div>
-                {% if user.id == noticia.autor_id or user.is_superuser%}
+                {% if user.id == noticia.autor_id or user.is_superuser %}
                 <div class="card-footer text-end">
                     <a href="{% url 'eliminar_post' noticia.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
                 </div>

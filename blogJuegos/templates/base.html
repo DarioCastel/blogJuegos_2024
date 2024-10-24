@@ -59,7 +59,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'noticias' %}">
-                    <img class="logo" src="{% static 'img/blog-de-internet.png' %}" alt="Logo" width="50">
+                    <img class="logo" src="{% static 'img/blog-de-internett.png' %}" alt="Logo" width="50">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,15 +71,7 @@
                             <a class="nav-link" href="{% url 'noticias' %}">Noticias</a>
                         </li>
 
-                        <!-- Categorías de Noticias Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarNoticiasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Categorías </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarNoticiasDropdown">
-                                {% for categoria in categorias %}
-                                    <a  class="dropdown-item" href="?categoria={{categoria.nombre}}">{{categoria.nombre}}</a>
-                                {% endfor %}
-                            </ul>
-                        </li>
+                        
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
