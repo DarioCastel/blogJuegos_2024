@@ -32,12 +32,19 @@ class Noticias(ListView):
         # print(queryset)
         # fecha
         ordenar_por = self.request.GET.get("ordenar")
+        direccion = self.request.GET.get("direccion")
         print(ordenar_por)
         if ordenar_por == "fecha":
-            queryset = queryset.order_by("-fecha_publicacion")
-        # alfabeticamente
+            if direccion == "asc":
+                queryset = queryset.order_by("fecha_publicacion")  # Ascendente
+            elif direccion == "desc":
+                queryset = queryset.order_by("-fecha_publicacion")  # Descendente
         elif ordenar_por == "alfabetico":
-            queryset = queryset.order_by("-titulo")
+            if direccion == "asc":
+                queryset = queryset.order_by("titulo")  # A-Z
+            elif direccion == "desc":
+                queryset = queryset.order_by("-titulo")  # Z-A
+
 
         # por autor
         autor = self.request.GET.get("autor")
