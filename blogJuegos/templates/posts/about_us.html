@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %} Sobre nosotros {% endblock titulo %}
+
+{% block contenido %}
+<div class="container my-4">
+    <h1 class="text-center">Sobre nosotros</h1>
+    
+    <!-- Texto explicativo -->
+    <p class="text-center">
+        Esta página es un proyecto desarrollado con fines académicos. Nuestro objetivo es crear un blog donde los usuarios puedan compartir y explorar contenido sobre videojuegos, fomentando el aprendizaje y la interacción en nuestra comunidad.
+    </p>
+
+    <div class="row justify-content-center">
+        <!-- Tarjeta 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded">
+                <img src="{% static 'img/miembro1.png' %}" class="card-img-top rounded-top" alt="Miembro 1" width="100px">
+                <div class="card-body">
+                    <h5 class="card-title">Motor</h5>
+                    <p class="card-text">Un capo el vago.</p>
+                    <div class="social-icons d-flex justify-content-center">
+                        <a href="https://instagram.com" target="_blank" class="me-2">
+                            <img src="{% static 'img/ig.ico' %}" alt="Instagram" width="30px">
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="me-2">
+                            <img src="{% static 'img/fb.ico' %}" alt="Facebook" width="30px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 rounded">
+                <img src="{% static 'img/miembro2.png' %}" class="card-img-top rounded-top" alt="Miembro 2" width="100px">
+                <div class="card-body">
+                    <h5 class="card-title">Turbo</h5>
+                    <p class="card-text">El que no sabe cuando parar.</p>
+                    <div class="social-icons d-flex justify-content-center">
+                        <a href="https://instagram.com" target="_blank" class="me-2">
+                            <img src="{% static 'img/ig.ico' %}" alt="Instagram" width="30px">
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="me-2">
+                            <img src="{% static 'img/fb.ico' %}" alt="Facebook" width="30px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
+
