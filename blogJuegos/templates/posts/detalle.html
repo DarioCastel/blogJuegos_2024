@@ -4,7 +4,7 @@
 
 <div class="container my-4">
     <!-- Botón Modificar solo para el autor -->
-    {% if user.id == noticia.autor_id %}
+    {% if user.id == noticia.autor_id or user.is_superuser%}
     <div class="mb-4 text-end">
         <a class="btn btn-warning" href="{% url 'modificar_post' noticia.pk %}">Modificar</a>
     </div>
@@ -67,10 +67,12 @@
                     <h5 class="card-title">{{ comentario.autor }}</h5>
                     <p class="card-text">{{ comentario.contenido }}</p>
                     <!-- Botones para modificar y eliminar comentario -->
-                    <div class="text-end">
-                        <a class="btn btn-warning btn-sm" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
-                        <a class="btn btn-danger btn-sm" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
-                    </div>
+                    {% if user.is_authenticated and comentario.autor == user or user.is_staff %}    
+                        <div class="text-end">
+                            <a class="btn btn-warning btn-sm" href="{% url 'modificar_comentario' comentario.pk %}">Modificar</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'borrar_comentario' comentario.pk %}">Eliminar</a>
+                        </div>
+                    {% endif %}    
                 </div>
             </div>
         </div>

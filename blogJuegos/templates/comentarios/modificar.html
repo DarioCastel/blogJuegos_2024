@@ -1,5 +1,12 @@
-<form action="" method="post">
+{% extends 'base.html' %}
+{% block titulo %} Gestion e comentario {% endblock titulo %}
+
+{% block contenido %}
+<form action="" method="post" class="bg-light p-4 rounded shadow">
     {% csrf_token %}
-    {{form}}
-    <input type="submit">
+    <div class="mb-3">
+        {{ form.as_p }}  <!-- Renderiza los campos del formulario como párrafos -->
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
+{% endblock contenido %}

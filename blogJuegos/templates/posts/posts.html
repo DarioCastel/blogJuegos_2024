@@ -52,7 +52,7 @@
                     <a href="?autor={{noticia.autor}}" class="text-secondary"><small>{{ noticia.autor }}</small></a>
                     <p class="mb-0"><small>Categoría: {{noticia.categoria}}</small></p>
                 </div>
-                {% if user.id == noticia.autor_id %}
+                {% if user.id == noticia.autor_id or user.is_superuser%}
                 <div class="card-footer text-end">
                     <a href="{% url 'eliminar_post' noticia.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
                 </div>
