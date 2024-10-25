@@ -6,21 +6,24 @@ from .models import User, Posts, Comentarios
 class RegistroForm(UserCreationForm):
     username = forms.CharField(
         max_length=200,
+        label="Nombre de Usuario", 
         widget=forms.TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre de usuario"},
         ),
     )
     email = forms.EmailField(
         max_length=200,
-        help_text="Required",
+        help_text="Obligatorio",
         widget=forms.EmailInput(
             attrs={"class": "form-control", "placeholder": "name@example.com"}
         ),
     )
     password1 = forms.CharField(
+        label="Contraseña",
         widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
     )
     password2 = forms.CharField(
+        label="Repetir la contraseña",
         widget=forms.PasswordInput(attrs={"class": "form-control"}), required=True
     )
     icono = forms.ImageField(
