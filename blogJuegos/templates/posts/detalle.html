@@ -37,14 +37,24 @@
     <!-- Sección de comentarios -->
     <div class="mt-5">
         <h2>Escribe un comentario</h2>
+        {% if user.is_authenticated %}
         <form action="{% url 'comentar' %}" method="post">
             {% csrf_token %}
             <div class="form-floating mb-3">
                 <textarea class="form-control" name="comentario" placeholder="Escribe tu comentario aquí..." style="height: 100px;"></textarea>
                 <label for="comentario">Tu comentario</label>
             </div>
-            <input type="hidden" name="id_noticia" value="{{ noticia.pk }}">
-            <input type="submit" class="btn btn-primary" value="Comentar">
+            
+                <input type="hidden" name="id_noticia" value="{{ noticia.pk }}">
+                <input type="submit" class="btn btn-primary" value="Comentar">
+        {% else %}
+        <p>Para comentar, inicia secion o registrate</p>
+            <a href="{% url 'login' %}" class="boton-enlace">Inicio de sesión</a>
+            
+                    
+        {% endif %}
+
+
         </form>
     </div>
 
