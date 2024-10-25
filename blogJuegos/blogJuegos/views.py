@@ -20,13 +20,11 @@ def index(request):
 </head>
 
 <body>
-<h1> Hola mundo! </h1>
+<h1> BIENVENIDOS AL PROYECTO DEL BLOG DE VIDEOJUEGOS DEL GRUPO 9 DE LA COMISIÓN 5 </h1>
 <p>Esto es párrafo</p>
 <ul>
-    <li>1. hola dani</li>
-    <li>2. hola rami</li>
-    <li>3. hola juan</li>
-    <li>4. hola julio</li>
+    <li>Por favor coloca /posts en la url para acceder</li>
+    
 </ul
 </body>
 
